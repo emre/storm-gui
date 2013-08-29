@@ -193,5 +193,5 @@ def main():
     StormFrame(None, -1, 'stormssh-gui')
     app.MainLoop()
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()
