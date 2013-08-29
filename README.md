@@ -3,7 +3,7 @@ storm-gui
 
 wxpython interface to stormssh.
 
-<img src="http://i.imgur.com/oLIhRuV.png">
+<img src="http://i.imgur.com/ROSsCRo.png">
 
 ### installation ###
 
