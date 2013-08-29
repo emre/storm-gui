@@ -3,6 +3,10 @@ storm-gui
 
 wxpython interface to stormssh.
 
+> <a href="http://github.com/emre/storm">storm</a> is a command line tool to manage your ssh connections.
+
+
+
 <img src="http://i.imgur.com/ROSsCRo.png">
 
 ### installation ###
