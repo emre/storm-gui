@@ -1,0 +1,38 @@
+# Maintainer: Samed Beyribey <ras0ir@eventualis.org>
+pkgname=python2-stormssh-gui
+pkgver=20130829
+pkgrel=1
+pkgdesc="storm is a command line tool to manage your hosts at sshconfig"
+arch=('any')
+url="https://github.com/emre/storm"
+license=('GPL')
+makedepends=('git')
+depends=('python2-stormssh-git' 'wxpython')
+source=('stormgui.desktop')
+sha256sums=('a58706f32c78826839519893cd519477d4472d24d1e82a831a020ffc89f46e9c')
+_gitroot=git://github.com/emre/storm-gui.git
+_gitname=storm-gui
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [[ -d "$_gitname" ]]; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+}
+
+package() {
+  cd "$srcdir/$_gitname-build"
+  python2 setup.py install --root="$pkgdir/"
+  install -Dm644 $srcdir/stormgui.desktop $pkgdir/usr/share/applications/stormgui.desktop
+}
