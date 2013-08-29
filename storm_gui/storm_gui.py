@@ -188,7 +188,7 @@ class StormFrame(wx.Frame):
                           "\n\nbug reports: https://github.com/emre/storm-gui/issues", 'info')
 
 
-if __name__ == '__main__':
+def main():
     app = wx.App()
     StormFrame(None, -1, 'stormssh-gui')
     app.MainLoop()
