@@ -122,7 +122,7 @@ class StormFrame(wx.Frame):
         selection = self.listbox.GetSelection()
 
         text = self.listbox.GetString(selection)
-        result = re.search("\[(.*?)\] (.*)", text)
+        result = re.search("^\[(.*)\] (.*)", text)
         if result:
             renamed = wx.GetTextFromUser('Edit item', 'Edit connection', result.group(2))
 
@@ -166,7 +166,7 @@ class StormFrame(wx.Frame):
             self.show_message(str(error), 'error')
 
     def find_hostname(self, connection_string):
-        hostname = re.findall('\[(.*?)\]', connection_string)
+        hostname = re.findall('^\[(.*)\]', connection_string)
 
         if len(hostname) > 0:
             return hostname[0]
