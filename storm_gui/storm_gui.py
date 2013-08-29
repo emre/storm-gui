@@ -192,3 +192,6 @@ def main():
     app = wx.App()
     StormFrame(None, -1, 'stormssh-gui')
     app.MainLoop()
+
+if __name__ == 'main':
+    main()
