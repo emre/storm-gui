@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='stormssh-gui',
-    version='0.2',
+    version='0.3',
     packages=['storm_gui'],
     url='http://github.com/emre/storm-gui',
     license='MIT',
