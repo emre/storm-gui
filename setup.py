@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='storm-gui',
-    version='0.1',
+    version='0.2',
     packages=['storm_gui'],
     url='http://github.com/emre/storm-gui',
     license='MIT',
