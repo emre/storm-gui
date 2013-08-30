@@ -76,8 +76,11 @@ class StormFrame(wx.Frame):
         self.Show(True)
 
     def activate_buttons(self, event):
-        self.edit.Enable(True)
-        self.delete.Enable(True)
+        self.toggle_buttons(True)
+
+    def toggle_buttons(self, status):
+        self.edit.Enable(status)
+        self.delete.Enable(status)
 
     def get_connection_list(self):
         ssh_connection_list = []
@@ -113,12 +116,15 @@ class StormFrame(wx.Frame):
                 self.listbox.Append("[%s] %s" % (hostname, connection_string))
                 self.sb.SetStatusText('%s added to SSHConfig.' % hostname)
 
+        self.toggle_buttons(False)
+
     def parse_connection_uri(self, connection_uri):
-        options = {}
+        options = dict()
         options["user"], options["hostname"], options["port"] = parse(connection_uri)
         return options
 
     def on_edit(self, event):
+
         selection = self.listbox.GetSelection()
 
         text = self.listbox.GetString(selection)
@@ -139,6 +145,9 @@ class StormFrame(wx.Frame):
 
                 self.listbox.Insert(new_entry, selection)
                 self.sb.SetStatusText('%s updated successfully.' % result.group(1))
+
+        self.toggle_buttons(False)
+
 
     def show_message(self, message, message_type):
         icon_types = {
@@ -165,6 +174,8 @@ class StormFrame(wx.Frame):
         except StormValueError as error:
             self.show_message(str(error), 'error')
 
+        self.toggle_buttons(False)
+
     def find_hostname(self, connection_string):
         hostname = re.findall('^\[(.*)\]', connection_string)
 
@@ -179,6 +190,7 @@ class StormFrame(wx.Frame):
             self.listbox.Append(ssh_connection)
 
         self.sb.SetStatusText('SSHconfig reloaded.')
+        self.toggle_buttons(False)
 
     def on_quit(self, text):
         self.Close()
