@@ -30,3 +30,7 @@ just type:
 ```
 $ stormssh-gui
 ```
+
+**Notes**:
+ - Archlinux <a href="https://github.com/emre/storm-gui/blob/master/contrib/archlinux/PKGBUILD">PKGBUILD</a> to install via pacman.
+ - An example <a href="https://github.com/emre/storm-gui/blob/master/contrib/archlinux/stormgui.desktop">desktop entry</a> to open the gui from the menu. 
