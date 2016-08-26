@@ -4,9 +4,9 @@
 import wx
 import re
 
-from storm import ssh_config
-from storm.exceptions import StormValueError
-from storm.ssh_uri_parser import parse
+from storm.parsers import ssh_config_parser
+#from storm.exceptions import StormValueError
+from storm.parsers.ssh_uri_parser import parse
 from getpass import getuser
 
 
@@ -84,7 +84,7 @@ class StormFrame(wx.Frame):
 
     def get_connection_list(self):
         ssh_connection_list = []
-        ssh_conf = ssh_config.ConfigParser()
+        ssh_conf = ssh_config_parser.ConfigParser()
         loaded_config = ssh_conf.load()
         for host_entry in loaded_config:
 
@@ -107,7 +107,7 @@ class StormFrame(wx.Frame):
         if hostname != '':
             connection_string = wx.GetTextFromUser('Connection string', 'Add connection')
             if connection_string != '':
-                sconfig = ssh_config.ConfigParser()
+                sconfig = ssh_config_parser.ConfigParser()
                 sconfig.load()
 
                 options = self.parse_connection_uri(connection_string)
@@ -171,7 +171,7 @@ class StormFrame(wx.Frame):
                 self.listbox.Delete(selection)
                 self.sb.SetStatusText('%s deleted successfully.' % host_name)
 
-        except StormValueError as error:
+        except ValueError as error:
             self.show_message(str(error), 'error')
 
         self.toggle_buttons(False)
